@@ -1,0 +1,10 @@
+Steps for timer in TDD:
+
+
+
+- Does a function X amount of times
+- Measure time before and after this function
+- Captures the elapsedTime as many times as the function in a vector
+- cuts off the lowest and highest 5% (https://www.geeksforgeeks.org/winsorization/)
+- can return the current average of times
+- can reset to a neutral starting state

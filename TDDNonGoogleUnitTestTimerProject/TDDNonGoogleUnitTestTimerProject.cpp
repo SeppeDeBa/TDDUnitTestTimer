@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "Timer.h"
-
+#include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -11,36 +11,43 @@ namespace TDDNonGoogleUnitTestTimerProject
 	{
 	public:
 		int test{ 5 };
-
-		TEST_METHOD(CallFunctionXTimes)
+		TEST_METHOD(SaveAndExecuteFunction)
 		{
-			Timer timer{};
-			const int repetitionCount{ 10 };
-			int iterationsDone{ 0 };
-			auto lambdaFunction = [&iterationsDone]() {iterationsDone++; }; 
-
-
-			//timer.run(lambdaFunction, repetitionCount); //linking error is normal in TDD?
-
-			Assert::AreEqual(iterationsDone, repetitionCount);
+			auto LambdaFunction = []() {std::cout << "function executed!" << std::endl; };
+			Timer timer{LambdaFunction};
+			timer.DoStuff();
+			Assert::AreNotEqual(0, timer.GetExecutedCycles());
+			
 		}
+		//TEST_METHOD(CallFunctionXTimes)
+		//{
+		//	//Timer timer{};
+		//	const int repetitionCount{ 10 };
+		//	int iterationsDone{ 0 };
+		//	auto lambdaFunction = [&iterationsDone]() {iterationsDone++; }; 
 
-		TEST_METHOD(StopTimer)
-		{
 
-		}
-		TEST_METHOD(ArrayFilled)
-		{
+		//	//timer.run(lambdaFunction, repetitionCount); //linking error is normal in TDD?
 
-		}
-		TEST_METHOD(ConversionToMiliseconds)
-		{
+		//	Assert::AreEqual(iterationsDone, repetitionCount);
+		//}
 
-		}
-		TEST_METHOD(ResultIsValid)
-		{
+		//TEST_METHOD(StopTimer)
+		//{
 
-		}
+		//}
+		//TEST_METHOD(ArrayFilled)
+		//{
+
+		//}
+		//TEST_METHOD(ConversionToMiliseconds)
+		//{
+
+		//}
+		//TEST_METHOD(ResultIsValid)
+		//{
+
+		//}
 
 
 	};

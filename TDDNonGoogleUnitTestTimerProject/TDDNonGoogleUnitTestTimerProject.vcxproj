@@ -172,6 +172,9 @@
       <Project>{8b78d7eb-5034-42f4-9299-54b7c96cfa4f}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="TDDNeeds.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
