@@ -10,27 +10,28 @@ namespace TDDNonGoogleUnitTestTimerProject
 	TEST_CLASS(TDDNonGoogleUnitTestTimerProject)
 	{
 	public:
-		int test{ 5 };
 		TEST_METHOD(SaveAndExecuteFunction)
 		{
 			auto LambdaFunction = []() {std::cout << "function executed!" << std::endl; };
-			Timer timer{LambdaFunction};
-			timer.DoStuff();
+			
+			Timer timer{LambdaFunction, 1};
+			timer.ExecuteCycles();
 			Assert::AreNotEqual(0, timer.GetExecutedCycles());
 			
 		}
-		//TEST_METHOD(CallFunctionXTimes)
-		//{
-		//	//Timer timer{};
-		//	const int repetitionCount{ 10 };
-		//	int iterationsDone{ 0 };
-		//	auto lambdaFunction = [&iterationsDone]() {iterationsDone++; }; 
+		TEST_METHOD(CallFunctionXTimes)
+		{
+			const int repetitionCount{ 123 };
+			int iterationsDone{ 0 };
+			auto lambdaFunction = [&iterationsDone]() {iterationsDone++; }; 
+			Timer timer{lambdaFunction, repetitionCount};
 
+			timer.ExecuteCycles();
+			//timer.run(lambdaFunction, repetitionCount); //linking error is normal in TDD?
 
-		//	//timer.run(lambdaFunction, repetitionCount); //linking error is normal in TDD?
-
-		//	Assert::AreEqual(iterationsDone, repetitionCount);
-		//}
+			Assert::AreEqual(iterationsDone, repetitionCount);
+			Assert::AreEqual(timer.GetExecutedCycles(), repetitionCount); //essentially the same, but might aswell.
+		}
 
 		//TEST_METHOD(StopTimer)
 		//{
