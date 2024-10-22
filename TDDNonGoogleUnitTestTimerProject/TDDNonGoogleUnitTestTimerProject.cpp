@@ -33,6 +33,21 @@ namespace TDDNonGoogleUnitTestTimerProject
 			Assert::AreEqual(timer.GetExecutedCycles(), repetitionCount); //essentially the same, but might aswell.
 		}
 
+		TEST_METHOD(CallFunctionXTimesWithReset)
+		{
+			const int repetitionCount{ 123 };
+			int iterationsDone{ 0 };
+			auto lambdaFunction = [&iterationsDone]() {iterationsDone++; };
+			Timer timer{ lambdaFunction, repetitionCount };
+
+			timer.ExecuteCycles();
+			timer.ExecuteCycles();
+			timer.ExecuteCycles();
+			//timer.run(lambdaFunction, repetitionCount); //linking error is normal in TDD?
+
+			Assert::AreEqual(iterationsDone, repetitionCount);
+			Assert::AreEqual(timer.GetExecutedCycles(), repetitionCount); //essentially the same, but might aswell.
+		}
 		//TEST_METHOD(StopTimer)
 		//{
 
