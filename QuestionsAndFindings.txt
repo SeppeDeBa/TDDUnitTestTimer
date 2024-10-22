@@ -1,0 +1,1 @@
+1. when making the tests, do i just plow through linking errors and consider them normal? There have to be some if i dont have it right?
